@@ -80,6 +80,7 @@
     ./hypridle.nix
     ./copyq.nix
     ./btop.nix
+    ./yazi/yazi.nix
     # ./firefox.nix
   ];
 
