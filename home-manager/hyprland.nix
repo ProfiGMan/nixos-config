@@ -1,9 +1,12 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
 
     settings = {
       "$mainMod" = "SUPER";
+
+      monitor = ",preferred,auto,1";
 
       exec-once = [
         "swaync"
@@ -14,7 +17,15 @@
 	"hypridle"
 	"hyprpaper"
 	"udiskie"
+	"xhost +SI:localuser:root"
       ];
+
+      input = {
+        kb_layout = "us,ru";
+	kb_options = "grp:alt_shift_toggle";
+
+	touchpad.natural_scroll = true;
+      };
 
       windowrulev2 = [
         "float,title:CopyQ"

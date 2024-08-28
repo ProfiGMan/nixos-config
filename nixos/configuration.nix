@@ -14,6 +14,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nixvim.nix
+      ./keyd.nix
       # ./greetd.nix
     ];
 
@@ -30,6 +31,7 @@
   # boot.kernelPackages = inputs.nixpkgs-stable.legacyPackages.x86_64-linux.linuxPackages_latest;
   # boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
   # nixpkgs.config.allowUnfree = true;
+  boot.supportedFilesystems = [ "ntfs" ];
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "nvidia-x11"
@@ -87,6 +89,11 @@
   services = {
     displayManager.ly = {
       enable = true;
+      settings = {
+        animation = "matrix";
+	auth_fails = 2;
+	clock = "%c";
+      };
       # package = pkgs.unstable.ly; # also use the package from the unstable channel!
     };
   };
@@ -104,41 +111,6 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
-  };
-
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      # The name is just the name of the configuration file, it does not really matter
-      default = {
-        ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
-        # Everything but the ID section:
-        settings = {
-          # The main layer, if you choose to declare it in Nix
-          main = {
-            # capslock = "layer(control)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
-	    tab = "overload(vimAnywhere, tab)";
-	    capslock = "overload(meta, esc)";
-	    space = "overloadt(control, space, 300)";
-	    "leftshift+rightshift" = "capslock";
-          };
-          vimAnywhere = {
-	    k = "up";
-	    j = "down";
-	    h = "left";
-	    l = "right";
-	    w = "macro(leftcontrol+right)";
-	    b = "macro(felftcontrol+left)";
-	    u = "pageup";
-	    d = "pagedown";
-	    e = "tab";
-	  };
-        };
-        extraConfig = ''
-          # put here any extra-config, e.g. you can copy/paste here directly a configuration, just remove the ids part
-        '';
-      };
-    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -180,6 +152,10 @@
     starship
     playerctl
     hypridle
+    xwayland
+    gparted
+    xorg.xhost
+    ntfs3g
     # wlogout
   ];
 
