@@ -60,6 +60,7 @@
       };
       modules = [
         ./nixos/configuration.nix
+	./home-manager/home.nix
         inputs.nixvim.nixosModules.nixvim
 	home-manager.nixosModules.home-manager
       ];
