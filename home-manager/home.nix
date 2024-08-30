@@ -81,6 +81,7 @@
     ./copyq.nix
     ./btop.nix
     ./yazi/yazi.nix
+    ./git.nix
     # ./firefox.nix
   ];
 
