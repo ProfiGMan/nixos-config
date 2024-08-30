@@ -7,8 +7,8 @@
 		# nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 		# nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-		# nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree";
-		# nixpkgs-unfree.inputs.nixpkgs.follows = "nixpkgs";
+		nixpkgs-unfree.url = "github:numtide/nixpkgs-unfree";
+		nixpkgs-unfree.inputs.nixpkgs.follows = "nixpkgs";
                 nur.url = "github:nix-community/NUR";
 
 
@@ -29,7 +29,7 @@
     		};
 	};
 
-	outputs = { nixpkgs, home-manager, ... }@inputs:
+	outputs = { nixpkgs, nixpkgs-unfree, home-manager, ... }@inputs:
 		let
 			system = "x86_64-linux";
 			pkgs = import nixpkgs {
@@ -48,14 +48,15 @@
 			# specialArgs = { inherit inputs; pkgs = pkgs; };
 			specialArgs = {
 			  inherit inputs;
+			  inherit nixpkgs-unfree;
 			  # pkgs-stable = import nixpkgs-stable {
 			  #   inherit system;
 			  #   config.allowUnfree = true;
 			  # };
-			  # pkgs-unfree = import nixpkgs-unfree {
-			    # inherit system;
-			    # config.allowUnfree = true;
-			  # };
+			  pkgs-unfree = import nixpkgs-unfree {
+			    inherit system;
+			    config.allowUnfree = true;
+			  };
 			};
 			modules = [
                           ./nixos/configuration.nix

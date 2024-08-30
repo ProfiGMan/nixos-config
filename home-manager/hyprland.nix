@@ -6,7 +6,7 @@
     settings = {
       "$mainMod" = "SUPER";
 
-      monitor = ",preferred,auto,1";
+      monitor = ",preferred,auto,1.25";
 
       exec-once = [
         "swaync"

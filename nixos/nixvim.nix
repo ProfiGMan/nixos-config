@@ -9,6 +9,7 @@
     opts = {
       number = true;
       relativenumber = true;
+      undofile = true;
     };
 
     keymaps = [

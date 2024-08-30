@@ -8,36 +8,31 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.loader.systemd-boot.enable = true;
-  # boot.loader.grub.device = "nodev";
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.useOSProber = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e8799e6b-8224-45ba-888f-78d81c2ea017";
+    { device = "/dev/disk/by-uuid/6c6e9417-1059-4674-9470-a0042d40b702";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/e8799e6b-8224-45ba-888f-78d81c2ea017";
+    { device = "/dev/disk/by-uuid/6c6e9417-1059-4674-9470-a0042d40b702";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/5001-A594";
+    { device = "/dev/disk/by-uuid/DC11-41F3";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/1efbbc90-9377-477d-bd90-a9322d4642d6"; }
+    [ { device = "/dev/disk/by-uuid/073d2154-989e-45b3-9100-27b768df58da"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
