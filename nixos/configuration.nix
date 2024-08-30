@@ -15,6 +15,7 @@
       ./hardware-bundle.nix
       ./nixvim.nix
       ./keyd.nix
+      ./home-manager/home.nix
       # ./greetd.nix
     ];
   
