@@ -15,14 +15,9 @@
       ./hardware-bundle.nix
       ./nixvim.nix
       ./keyd.nix
-      <home-manager/nixos>
       # ./greetd.nix
     ];
 
-  home-manager.users.bober = { pkgs, ... }: {
-    imports = [ ./home-manager/home.nix ];
-  };
-  
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
